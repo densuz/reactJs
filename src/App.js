@@ -3,13 +3,14 @@ import React from 'react';
 import './App.css';
 //import Home from './Component/Fungsional/Home'
 //import Beranda from './Component/Class/Beranda'
-import './Component/Class/Parent'
-import Parent from './Component/Class/Parent';
+//import './Component/Class/Parent'
+//import Parent from './Component/Class/Parent';
+import BoostrapComp from './Component/Class/BoostrapComp';
 
 function App() {
   return (
     <div className="App">
-    <Parent/>
+      <BoostrapComp />
 
     </div>
 
