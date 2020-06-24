@@ -12,6 +12,8 @@ import NavbarComp from './Component/Fungsional/NavbarComp';
 import HomePage from './Component/Fungsional/Homepage';
 import AboutComp from './Component/Fungsional/AboutComp';
 import Profile from './Component/Fungsional/Profile';
+//import CardComp from './Component/Fungsional/CardComp';
+import DetailComp from './Component/Fungsional/DetailComp';
 
 function App() {
   return (
@@ -21,6 +23,7 @@ function App() {
         <Route exact path="/" component={HomePage} />
         <Route exact path="/About" component={AboutComp} />
         <Route exact path="/Profile" component={Profile} />
+        <Route exact path="/detail/:id" component={DetailComp} />
       </Switch>
 
     </BrowserRouter>
