@@ -34,9 +34,9 @@ class Produk extends Component {
                 <p>{this.state.stock}</p>
                 <button className="btn-click" onClick={this.ButtonBeli} disabled={this.state.disabled}>Beli</button>
                 <p>{this.state.status}</p>
+                
             </div >
             
-
         )
     }
 
