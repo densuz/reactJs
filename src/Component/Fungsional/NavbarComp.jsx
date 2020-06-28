@@ -30,8 +30,9 @@ const NavbarComp = (props) => {
                         <NavItem>
                             <NavLink href="/About">About</NavLink>
                         </NavItem>
+                        
                         <NavItem>
-                            <NavLink href="/Profile">Profile</NavLink>
+                            <NavLink href="/mahasiswa">Mahasiswa</NavLink>
                         </NavItem>
                     </Nav>
                     <NavbarText>Simple Text</NavbarText>
