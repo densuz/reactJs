@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import { Container, Col, Form, Alert, FormGroup, Label, Input, Button } from 'reactstrap';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
+import Blog from './Blog'
 
 const api = 'http://localhost:3001'
 
@@ -49,45 +50,52 @@ class TambahComp extends PureComponent {
     render() {
         return (
             <Container>
-                <h4>Masukan data mahasiswa</h4>
+                <b><h4 class='text-center'>Masukan Data Mahasiswa</h4></b>
+                <br/>
                 <Alert color="success" style={{ display: this.state.display }}>
                     {this.state.response}
                 </Alert>
-                <Form className="form">
-                    <Col>
-                        <Label for="nim">NIM</Label>
-                        <FormGroup row>
-                            <Col>
-                                <Input type="text" name="nim" onChange={this.handleChange} value={this.state.nim} placeholder="Masukan NIM" />
-                            </Col>
-                        </FormGroup>
-                        <Label for="nama">Nama</Label>
-                        <FormGroup row>
-                            <Col>
-                                <Input type="text" name="nama" onChange={this.handleChange} value={this.state.nama} placeholder="Masukan Nama" />
-                            </Col>
-                        </FormGroup>
-                        <Label for="jurusan">Jurusan</Label>
-                        <FormGroup row>
-                            <Col>
-                                <Input type="text" name="jurusan" onChange={this.handleChange} value={this.state.jurusan} placeholder="Masukan Jurusan" />
-                            </Col>
-                        </FormGroup>
-                    </Col>
-                    <Col>
-                        <FormGroup row>
-                            <Col>   
-                                <button type="button" onClick={this.Addmahasiswa} className="btn btn-success">Submit</button>
-                            </Col>
-                            <Col>
-                                <Button color="danger">Reset</Button>{' '}
-                            </Col>
-                            <Col>
-                                <Link to='/mahasiswa'><Button color="secondary">Kembali</Button></Link>
-                            </Col>
-                        </FormGroup>
-                    </Col>
-                </Form>
+                <div class="tengah">
+                    <Form className="form">
+                        <Col>
+                            <b><Label for="nim">NIM</Label></b>
+                            <FormGroup row>
+                                <Col>
+                                    <Input type="text" name="nim" id="validationDefaultnim"onChange={this.handleChange} value={this.state.nim} placeholder="Masukan NIM" required/>
+                                </Col>
+                            </FormGroup>
+                            <b><Label for="nama">Nama</Label></b>
+                            <FormGroup row>
+                                <Col>
+                                    <Input type="text" name="nama" id="validationDefaultnama"onChange={this.handleChange} value={this.state.nama} placeholder="Masukan Nama" required/>
+                                </Col>
+                            </FormGroup>
+
+                            <b><Label for="jurusan">Jurusan</Label></b>
+                            <FormGroup row>
+                                <Col>
+                                    <Input type="text" name="jurusan" id="validationDefaultjurusan" onChange={this.handleChange} value={this.state.jurusan} placeholder="Masukan Jurusan" required/>
+                                </Col>
+                            </FormGroup>
+                        </Col>
+                        <Col>
+                            <FormGroup row>
+                                <span>
+                                    <Col>
+                                        <button type="button" onClick={this.Addmahasiswa} className="btn btn-success">Submit</button>
+                                    </Col>
+                                </span>
+                                <Col>
+                                    <Button color="danger">Reset</Button>{' '}
+                                </Col>
+                                <Col>
+                                    <Link to='/mahasiswa'><Button color="secondary">Kembali</Button></Link>
+                                </Col>
+                            </FormGroup>
+                        </Col>
+
+                    </Form>
+                </div>
             </Container>
 
         )
