@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
     Collapse,
     Navbar,
@@ -6,44 +6,59 @@ import {
     NavbarBrand,
     Nav,
     NavItem,
-    NavLink,
     NavbarText,
-    Container
+    Container,
+    Button
 } from 'reactstrap';
+import {NavLink} from 'react-router-dom'
+import { CartContext } from '../../CartContex';
 
 const NavbarComp = (props) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => setIsOpen(!isOpen);
 
+    const {value, setValue} = useContext(CartContext)
+
     return (
         <div>
             <Container>
             <Navbar color="light" light expand="md">
-                <NavbarBrand href="/">reactstrap</NavbarBrand>
+                <NavbarBrand to ="/"className="nav-link">imReact</NavbarBrand>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="mr-auto" navbar>
                         <NavItem>
-                            <NavLink href="/">Home</NavLink>
+                            <NavLink to="/" className="nav-link">Home</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/About">About</NavLink>
+                            <NavLink to="/About"className="nav-link">About</NavLink>
                         </NavItem>
                         
                         <NavItem>
-                            <NavLink href="/mahasiswa">Mahasiswa</NavLink>
+                            <NavLink to="/mahasiswa"className="nav-link">Mahasiswa</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/kelas">Class</NavLink>
+                            <NavLink to="/kelas"className="nav-link">Class</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/Hooks">Hooks</NavLink>
+                            <NavLink to="/Hooks"className="nav-link">Hooks</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="/HooksEffects">HooksEffects</NavLink>
+                            <NavLink to="/HooksEffects"className="nav-link">HooksEffects</NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink to="/Product"className="nav-link">Produk</NavLink>
                         </NavItem>
                     </Nav>
+                    <NavbarText>
+                        <Button color="primary">
+                        <i className="fa fa-shopping-cart" ></i>
+                        <span className="badge badge-light">{value}</span>
+                        </Button>
+                    </NavbarText>
+                    
+
                     <NavbarText>Login / Register </NavbarText>
                 </Collapse>
             </Navbar>
