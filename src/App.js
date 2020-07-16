@@ -19,6 +19,7 @@ import HooksComp from './Component/Hooks/Functional/HooksComp';
 import HooksUseEffects from './Component/Hooks/Functional/HooksUseEffects';
 import { CartContext } from './CartContex';
 import ProductComp from './Component/Fungsional/ProductComp';
+import qity from './Component/Fungsional/qity';
 //import CardComp from './Component/Fungsional/CardComp';
 //import DetailComp from './Component/Fungsional/DetailComp';
 
@@ -42,6 +43,7 @@ const App = () => {
           <Route exact path="/Hooks" component={HooksComp} />
           <Route exact path="/HooksEffects" component={HooksUseEffects} />
           <Route exact path="/product" component={ProductComp} />
+          <Route exact path="/qity" component={qity} />
 
           {/* <Route exact path="/detail/:id" component={DetailComp}/> */}
         </Switch>

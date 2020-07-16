@@ -50,6 +50,9 @@ const NavbarComp = (props) => {
                         <NavItem>
                             <NavLink to="/Product"className="nav-link">Produk</NavLink>
                         </NavItem>
+                        <NavItem>
+                            <NavLink to="/qity"className="nav-link">jumlah beli</NavLink>
+                        </NavItem>
                     </Nav>
                     <NavbarText>
                         <Button color="primary">
