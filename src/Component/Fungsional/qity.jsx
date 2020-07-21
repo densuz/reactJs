@@ -1,19 +1,29 @@
 import React, { useReducer } from 'react';
 import { Row, Container, Col, Card, CardImg, Button } from 'reactstrap';
+import { useContext } from 'react';
+import { CartContext } from '../../CartContex';
+
 
 
 //untuk deklarasi fungsi jumlah dan tambah
 const initialState = {
     jumlah: 1,
-    hargasatuan:1000,
-    hargatotal:0
+    hargasatuan: 1000,
+    hargatotal: 0,
+    stock: 35
+
 }
 
 const reducer = (state, action) => {
-    switch (action. type) {
+
+    const countContext = useContext(keranjangContext)
+    const [count, dispatch] = useReducer(reducer, initialState)
+    const { value, setValue } = useContext(CartContext)
+
+    switch (action.type) {
         case 'tambah': return {
             ...state,
-            jumlah:state.jumlah + 1,
+            jumlah: state.jumlah + 1,
             hargatotal: state.hargasatuan + (state.hargasatuan * state.jumlah)
         }
         case 'kurangi': return {
@@ -27,8 +37,10 @@ const reducer = (state, action) => {
     }
 }
 
+
 function HookReducer() {
     const [count, dispatch] = useReducer(reducer, initialState)
+    const { value, setValue } = useContext(CartContext)
 
     return (
         <Container>
@@ -36,39 +48,46 @@ function HookReducer() {
             <Row>
                 <Col xs="6">
                     <Card>
-                    <span class="border">
-                        <CardImg top width="100%" src="https://placeimg.com/640/480/any" alt="Card image cap" />
+                        <span class="border">
+                            <CardImg top width="100%" src="https://placeimg.com/640/480/any" alt="Card image cap" />
                         </span>
                     </Card>
 
                 </Col>
                 <Col xs="6">
-                    <h3>Realme 5 Pro</h3>
-                    <p>Harga</p>
-                    <h3>Rp. {count.hargasatuan}</h3>
-                    <p>Jumlah</p>
+                    <h3>Realme 5 Pro{props.item}</h3>
+                    
+                    <h3>Rp.{countContext.keranjangState.hargatotal}</h3>
+                    <br/>
+                    <p><b>Jumlah :{countContext.keranjangState.jumlah}</b></p>
                     <Row>
-                        <Col><Button onClick={() => dispatch({type:'kurangi'})} color="danger">-</Button></Col>
-                        <Col>{count.jumlah}</Col>
-                        <Col><Button onClick={() => dispatch({type:'tambah'})} color="primary">+</Button></Col>
+                        <Col><Button onClick={() => countContext.keranjangispatch({ type: 'kurangi' })} color="danger">-</Button></Col>
+                        <Col>{countContext.keranjangState.jumlah}</Col>
+                        <Col><Button onClick={() =>countContext.keranjangdispatch({ type: 'tambah' })} color="primary">+</Button></Col>
 
                     </Row>
+                    
+                    <br />
+                    <h5>Total Rp. {countContext.keranjangState.hargatotal}</h5>
+                    <br />
+                    <Button onClick={() => setValue(value + 1)} color="success" size="md" className="fa fa-cart-plus">Tambahkan Keranjang</Button>
                     <br/>
-                    <Button color="primary" size="lg">Beli {count.hargatotal}</Button>
-                    <Container>
-                        <br/>
-                   
-                    <h5>Deskripsi</h5>
                     <hr/>
-                    
-                    <p>and instance of type Instance.Instance is optional and is mixed by default.A class or function component with config Config may be used in places that expect</p>
-                  
-                    
-                    <br/>
-                    
+                    <Button color="danger">
+                    <NavLink to="/tagihan">Tagihan </NavLink> 
+                    </Button>
+                   
+                    <Container>
+
+                        <br />
+
+                        <h5 className="text-justify"><b>Deskripsi</b></h5>
+                        <hr />
+                        <p className="text-justify">and instance of type Instance.Instance is optional and is mixed by default.A class or function component with config Config may be used in places that expect</p>
+                        <br />
                     </Container>
                 </Col>
-                    
+
             </Row>
         </Container>
 

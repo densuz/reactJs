@@ -23,16 +23,49 @@ import qity from './Component/Fungsional/qity';
 //import CardComp from './Component/Fungsional/CardComp';
 //import DetailComp from './Component/Fungsional/DetailComp';
 
+export const keranjangContext= createContext()
+
+//untuk deklarasi fungsi jumlah dan tambah
+const initialState = {
+  jumlah: 1,
+  hargasatuan: 1000,
+  hargatotal: 0,
+  stock: 35
+
+}
+
+const reducer = (state, action) => {
+
+
+
+  switch (action.type) {
+      case 'tambah': return {
+          ...state,
+          jumlah: state.jumlah + 1,
+          hargatotal: state.hargasatuan + (state.hargasatuan * state.jumlah)
+      }
+      case 'kurangi': return {
+          ...state,
+          jumlah: state.jumlah - 1,
+          hargatotal: (state.hargasatuan * state.jumlah) - state.hargasatuan
+      }
+      default:
+          return state
+
+  }
+}
 
 
 const App = () => {
 
   const[value,setValue] = useState(0)
-
+  const[value,setValue] = useState(0)
+  const [count, dispatch] = useReducer(reducer, initialState)
   return (
     <BrowserRouter>
       <CartContext.Provider value={{value, setValue}}>
         <NavbarComp />
+        <keranjangContext.Provider value={{keranjangState: count,keranjangdispatch:dispatch}}>
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/About" component={AboutComp} />
@@ -47,6 +80,8 @@ const App = () => {
 
           {/* <Route exact path="/detail/:id" component={DetailComp}/> */}
         </Switch>
+        </keranjangContext.Provider>
+        
       </CartContext.Provider>
     </BrowserRouter>
 
